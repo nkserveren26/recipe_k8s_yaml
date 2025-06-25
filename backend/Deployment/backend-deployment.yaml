@@ -10,11 +10,11 @@ spec:
   template:
     metadata:
       labels:
-        app: myapp-backend
+        app: myrecipe-backend
     spec:
       containers:
-        - name: myapp-backend
-          image: myapp-backend:latest
+        - name: myrecipe-backend
+          image: nkdeveloper26/myrecipe-backend:latest
           ports:
             - containerPort: 8080
           env:
