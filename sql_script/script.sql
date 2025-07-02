@@ -18,3 +18,9 @@ CREATE USER 'recipe_user'@'%' IDENTIFIED BY 'P@ssw0rd';
 
 /* 権限を付与（必要に応じて調整） */
 GRANT SELECT, INSERT, UPDATE, DELETE ON recipe.* TO 'recipe_user'@'%';
+
+/* MySQL で外部からの接続を許可。下記のファイルのbind-addressに「0.0.0.0」を指定 */
+sudo vi /etc/mysql/mysql.conf.d/mysqld.cnf
+
+/* MySQL 再起動 */
+sudo systemctl restart mysql
