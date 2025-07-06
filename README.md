@@ -15,13 +15,25 @@ kubectl apply -f backend-deployment.yaml
 
 ### 指定の Pod のログを表示
 ```bash
-kubectl logs myapp-backend-78f7bd58-nlh22
+kubectl logs ＜Pod名＞
 ```
 
 ### Deployment 再起動
+```bash
 kubectl rollout restart deployment myapp-backend
+```
 
 ### API 実行環境 Pod 起動
 ```bash
 kubectl run test-client --rm -it --image=curlimages/curl -- /bin/sh
+```
+
+### Pod の IP を表示
+```bash
+kubectl get pod -o wide
+```
+
+### Deployment を削除
+```bash
+kubectl delete deployment ＜Deployment名＞
 ```
