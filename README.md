@@ -13,6 +13,11 @@ kubectl create secret generic aws-credentials \
 kubectl apply -f backend-deployment.yaml
 ```
 
+### Pod に登録されている特定の環境変数を表示
+```bash
+kubectl exec -it <pod-name> -- printenv | grep AWS
+```
+
 ### 指定の Pod のログを表示
 ```bash
 kubectl logs ＜Pod名＞
@@ -20,7 +25,7 @@ kubectl logs ＜Pod名＞
 
 ### Deployment 再起動
 ```bash
-kubectl rollout restart deployment myapp-backend
+kubectl rollout restart deployment ＜Deployment名＞
 ```
 
 ### API 実行環境 Pod 起動
