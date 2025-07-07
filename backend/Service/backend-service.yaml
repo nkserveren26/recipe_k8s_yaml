@@ -5,7 +5,7 @@ metadata:
 spec:
   type: NodePort
   selector:
-    app: myapp-backend
+    app: myrecipe-backend
   ports:
     - name: http
       port: 8080          # クラスタ内のServiceポート
