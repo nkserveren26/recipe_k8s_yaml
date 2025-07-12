@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: db-config
+data:
+  DB_HOST: 192.168.3.17
+  DB_PORT: "3306"
+  DB_NAME: recipe
+  DB_USER: recipe_user
