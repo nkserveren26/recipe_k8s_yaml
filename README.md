@@ -6,6 +6,12 @@ kubectl create secret generic aws-credentials \
   --from-literal=AWS_SECRET_ACCESS_KEY=xxxxxx
 ```
 
+・DBユーザーのパスワードを格納するSecretを作成
+```bash
+kubectl create secret generic db-secret \
+  --from-literal=DB_PASSWORD=xxxxxx
+```
+
 ## kubectl のコマンドメモ
 
 ### Deployment のデプロイ
