@@ -42,3 +42,13 @@ kubectl get pod -o wide
 ```bash
 kubectl delete deployment ＜Deployment名＞
 ```
+
+### Secret の一覧を表示
+```bash
+kubectl get secret
+```
+
+### ConfigMap の一覧を表示
+```bash
+kubectl get configmap
+```
