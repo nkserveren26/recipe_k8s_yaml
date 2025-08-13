@@ -16,7 +16,7 @@ spec:
         - name: myrecipe-frontend
           image: nkdeveloper26/myrecipe-frontend:latest
           ports:
-            - containerPort: 3000
+            - containerPort: 80
           resources:
             requests:
               cpu: "250m"
