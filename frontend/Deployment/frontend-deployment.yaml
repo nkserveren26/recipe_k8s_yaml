@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myrecipe-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: myrecipe-frontend
+  template:
+    metadata:
+      labels:
+        app: myrecipe-frontend
+    spec:
+      containers:
+        - name: myrecipe-frontend
+          image: nkdeveloper26/myrecipe-frontend:latest
+          ports:
+            - containerPort: 3000
+          resources:
+            requests:
+              cpu: "250m"
+              memory: "512Mi"
+            limits:
+              cpu: "500m"
+              memory: "1Gi"
