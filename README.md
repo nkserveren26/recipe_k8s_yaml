@@ -27,6 +27,18 @@ kubectl apply -f backend-deployment.yaml
 kubectl apply -f backend-service.yaml
 ```
 
+## フロントエンドアプリの構築メモ
+
+・Deployment 作成
+```bash
+kubectl apply -f frontend-deployment.yaml
+```
+
+・Service 作成
+```bash
+kubectl apply -f fronend-service.yaml
+```
+
 
 ## kubectl のコマンドメモ
 
