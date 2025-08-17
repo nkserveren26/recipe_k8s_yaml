@@ -12,6 +12,22 @@ kubectl create secret generic db-secret \
   --from-literal=DB_PASSWORD=xxxxxx
 ```
 
+・DB 接続情報を格納する ConfigMap を作成
+```bash
+kubectl apply -f db-configmap.yaml
+```
+
+・Deployment 作成
+```bash
+kubectl apply -f backend-deployment.yaml
+```
+
+・Service 作成
+```bash
+kubectl apply -f backend-service.yaml
+```
+
+
 ## kubectl のコマンドメモ
 
 ### Deployment のデプロイ
