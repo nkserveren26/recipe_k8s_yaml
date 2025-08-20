@@ -39,6 +39,26 @@ kubectl apply -f frontend-deployment.yaml
 kubectl apply -f fronend-service.yaml
 ```
 
+## デプロイパイプライン構築
+
+### Argo CD インストール
+
+・Argo CD 専用の namespace 作成
+```bash
+kubectl create namespace argocd
+```
+
+・argocd namespace に、Argo CD のリソースを作成
+```bash
+kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+```
+
+・Argo CD CLI インストール
+```bash
+curl -sSL -o argocd-linux-amd64 https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-amd64
+sudo install -m 555 argocd-linux-amd64 /usr/local/bin/argocd
+rm argocd-linux-amd64
+```
 
 ## kubectl のコマンドメモ
 
