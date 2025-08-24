@@ -60,6 +60,16 @@ sudo install -m 555 argocd-linux-amd64 /usr/local/bin/argocd
 rm argocd-linux-amd64
 ```
 
+・argocd-server service のタイプを「NodePort」に変更
+```bash
+kubectl patch svc argocd-server -n argocd -p '{"spec":{"type":"NodePort"}}'
+```
+
+・Argo CD の admin ユーザーのパスワード確認
+```bash
+argocd admin initial-password -n argocd
+```
+
 ## kubectl のコマンドメモ
 
 ### Deployment のデプロイ
