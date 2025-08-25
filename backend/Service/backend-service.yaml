@@ -3,11 +3,10 @@ kind: Service
 metadata:
   name: myrecipe-backend
 spec:
-  type: NodePort
+  type: ClusterIP
   selector:
     app: myrecipe-backend
   ports:
     - name: http
       port: 8080          # クラスタ内のServiceポート
       targetPort: 8080     # Podのコンテナポート
-      nodePort: 30080      # 外部に公開するノードポート（30000〜32767）
