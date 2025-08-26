@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: frontend-config
+data:
+  API_BASE_URL: "http://myrecipe-backend.default.svc.cluster.local:8080/api/recipes"
+  API_GET_RECIPES_URL: "http://myrecipe-backend.default.svc.cluster.local:8080/api/recipes/by-category"
