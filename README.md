@@ -70,6 +70,11 @@ kubectl patch svc argocd-server -n argocd -p '{"spec":{"type":"NodePort"}}'
 argocd admin initial-password -n argocd
 ```
 
+### Argo CD でのデプロイ設定時のメモ
+
+・監視対象のリポジトリ内ディレクトリの中のファイル群を読み込む設定で、再帰的に読み込むようにする
+recursive にチェックを入れる。
+
 ## kubectl のコマンドメモ
 
 ### Deployment のデプロイ
