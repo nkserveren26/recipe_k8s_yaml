@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: myrecipe-frontend
-          image: nkdeveloper26/myrecipe-frontend:v0.1.13
+          image: nkdeveloper26/myrecipe-frontend:v0.1.14
           ports:
             - containerPort: 80
           resources:
