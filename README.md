@@ -75,6 +75,14 @@ argocd admin initial-password -n argocd
 ・監視対象のリポジトリ内ディレクトリの中のファイル群を読み込む設定で、再帰的に読み込むようにする
 recursive にチェックを入れる。
 
+## Cloudflare の設定メモ
+
+### Cloudflare のアカウント登録
+
+### Cloudflare にドメインを登録
+
+### Cloudflare の Zero-Trust 設定
+
 ## kubectl のコマンドメモ
 
 ### Deployment のデプロイ
