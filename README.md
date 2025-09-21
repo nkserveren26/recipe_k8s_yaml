@@ -83,6 +83,19 @@ recursive にチェックを入れる。
 
 ### Cloudflare の Zero-Trust 設定
 
+## Kubernetes クラスターにトークン用Secret作成
+
+```tunnel-token.yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: cloudflare-tunnel-secret
+type: Opaque
+stringData:
+  TUNNEL_TOKEN: YOUR-TUNNEL-TOKEN-HERE
+
+```
+
 ## kubectl のコマンドメモ
 
 ### Deployment のデプロイ
