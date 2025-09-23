@@ -83,9 +83,9 @@ recursive にチェックを入れる。
 
 ### Cloudflare の Zero-Trust 設定
 
-## Kubernetes クラスターにトークン用Secret作成
+### Kubernetes クラスターにトークン用Secret作成
 
-```tunnel-token.yaml
+```yaml
 apiVersion: v1
 kind: Secret
 metadata:
@@ -93,7 +93,67 @@ metadata:
 type: Opaque
 stringData:
   TUNNEL_TOKEN: YOUR-TUNNEL-TOKEN-HERE
+```
 
+### cloudflared が動く pod を Deplyment で作成
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cloudflared-deployment
+  namespace: default
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      pod: cloudflared
+  template:
+    metadata:
+      labels:
+        pod: cloudflared
+    spec:
+      securityContext:
+        sysctls:
+        # Allows ICMP traffic (ping, traceroute) to resources behind cloudflared.
+          - name: net.ipv4.ping_group_range
+            value: "65532 65532"
+      containers:
+        - image: cloudflare/cloudflared:latest
+          name: cloudflared
+          env:
+            # Defines an environment variable for the tunnel token.
+            - name: TUNNEL_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: cloudflare-tunnel-secret
+                  key: TUNNEL_TOKEN
+          command:
+            # Configures tunnel run parameters
+            - cloudflared
+            - tunnel
+            - --no-autoupdate
+            - --loglevel
+            - debug
+            - --metrics
+            - 0.0.0.0:2000
+            - run
+          livenessProbe:
+            httpGet:
+              # Cloudflared has a /ready endpoint which returns 200 if and only if
+              # it has an active connection to Cloudflare's network.
+              path: /ready
+              port: 2000
+            failureThreshold: 1
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          resources:
+            requests:
+              cpu: "250m"
+              memory: "512Mi"
+            limits:
+              cpu: "500m"
+              memory: "1Gi"
 ```
 
 ## kubectl のコマンドメモ
