@@ -156,6 +156,23 @@ spec:
               memory: "1Gi"
 ```
 
+### Pod のログを確認
+```bash
+kubectl logs pod/cloudflared-deployment-6d5f9f9666-85l5w
+```
+
+以下のようなログが出ていればOK
+```bash
+2025-06-11T22:00:47Z INF Starting tunnel tunnelID=64c359b6-e111-40ec-a3a9-199c2a656613
+2025-06-11T22:00:47Z INF Version 2025.6.0 (Checksum 72f233bb55199093961bf099ad62d491db58819df34b071ab231f622deff33ce)
+2025-06-11T22:00:47Z INF GOOS: linux, GOVersion: go1.24.2, GoArch: amd64
+2025-06-11T22:00:47Z INF Settings: map[loglevel:debug metrics:0.0.0.0:2000 no-autoupdate:true token:*****]
+2025-06-11T22:00:47Z INF Generated Connector ID: aff7c4a0-85a3-4ac9-8475-1e0aa1af8d94
+2025-06-11T22:00:47Z DBG Fetched protocol: quic
+2025-06-11T22:00:47Z INF Initial protocol quic
+...
+```
+
 ## kubectl のコマンドメモ
 
 ### Deployment のデプロイ
