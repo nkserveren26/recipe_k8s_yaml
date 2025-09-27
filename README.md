@@ -182,6 +182,12 @@ kubectl logs pod/cloudflared-deployment-6d5f9f9666-85l5w
 ...
 ```
 
+### Cloudflare Tunnel で DNS レコードの設定
+アクセスエンドポイントとなる DNS レコードを設定する。
+Tunnel > 公開されたアプリケーションルート > 公開されたアプリケーションルートを追加する
+　パブリックホスト名：アクセスエンドポイントのドメイン名
+　サービス：Ingress Controller の LoadBalancer Service の Kubernetes クラスター内  DNS 名
+
 
 ## kubectl のコマンドメモ
 
