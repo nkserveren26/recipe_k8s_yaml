@@ -39,6 +39,15 @@ kubectl apply -f frontend-deployment.yaml
 kubectl apply -f fronend-service.yaml
 ```
 
+## Ingress 構築
+
+### Nginx Ingress Controller の構築
+
+```bash
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/cloud/deploy.yaml
+
+```
+
 ## デプロイパイプライン構築
 
 ### Argo CD インストール
@@ -172,6 +181,7 @@ kubectl logs pod/cloudflared-deployment-6d5f9f9666-85l5w
 2025-06-11T22:00:47Z INF Initial protocol quic
 ...
 ```
+
 
 ## kubectl のコマンドメモ
 
