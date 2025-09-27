@@ -10,14 +10,14 @@ spec:
   - host: myrecipe.norioo.uk
     http:
       paths:
-      - path: /*
+      - path: /
         pathType: Prefix
         backend:
           service:
             name: myrecipe-frontend
             port:
               number: 80
-      - path: /api/*
+      - path: /api
         pathType: Prefix
         backend:
           service:
