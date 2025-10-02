@@ -84,6 +84,20 @@ argocd admin initial-password -n argocd
 ・監視対象のリポジトリ内ディレクトリの中のファイル群を読み込む設定で、再帰的に読み込むようにする
 recursive にチェックを入れる。
 
+## Ingress の設定メモ
+- TLS の終端ではないので、`nginx.ingress.kubernetes.io/ssl-redirect` に `false` を指定
+- リクエストボディの上限サイズを 10 MB にするために、`nginx.ingress.kubernetes.io/proxy-body-size` に `10m` を指定
+
+```yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: myapp-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/proxy-body-size: 10m
+```
+
 ## Cloudflare の設定メモ
 
 ### Cloudflare のアカウント登録
