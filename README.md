@@ -13,6 +13,22 @@
 - IaC / 宣言的運用の実践
 - Platform Engineering スキル向上
 
+# 3. 構成図 (Architecture)
+
+# 4. 技術選定理由 (Why)
+
+## Argo CD
+
+## Cloudflare
+
+
+
+# 5. 今後の改善予定
+- Helm を活用したアプリケーション管理
+- Prometheus / Grafana を利用した監視基盤構築
+- ミニ PC を 1 台増やし、完全なクラスター構成とする（現状は 1 台で運用）
+
+
 ## バックエンドアプリの構築メモ
 ・AWS認証情報を格納するSecretを作成
 ```bash
