@@ -4,6 +4,15 @@
 ミニ PC 上に Kubernetes クラスタを構築し、フロントエンド・バックエンドアプリケーションを Kubernetes 上で動かしています。
 アプリのデプロイは Argo CD による GitOps ベースでデプロイしています。
 
+# 2. 目的 (Objectives)
+以下を目的に Kubernetes Lab 環境を運用しています。
+
+- Kubernetes 運用理解
+- GitOps の学習
+- Argo CD による継続デプロイ
+- IaC / 宣言的運用の実践
+- Platform Engineering スキル向上
+
 ## バックエンドアプリの構築メモ
 ・AWS認証情報を格納するSecretを作成
 ```bash
