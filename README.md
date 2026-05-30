@@ -1,3 +1,9 @@
+# 1. 概要 (Overview)
+プライベートで自分用に運用している Kubernetes Lab 環境です。
+
+ミニ PC 上に Kubernetes クラスタを構築し、フロントエンド・バックエンドアプリケーションを Kubernetes 上で動かしています。
+アプリのデプロイは Argo CD による GitOps ベースでデプロイしています。
+
 ## バックエンドアプリの構築メモ
 ・AWS認証情報を格納するSecretを作成
 ```bash
