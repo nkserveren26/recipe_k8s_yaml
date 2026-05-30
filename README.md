@@ -37,7 +37,7 @@ Argo CD で GitHub リポジトリを監視し、マニフェスト更新時に 
 - 手動デプロイ作業を削減
 - kubectl apply の実行漏れやオペミスを防止
 - Git を Single Source of Truth とし、Kubernetes リソースの正しい状態を単一のリポジトリで管理
-- Kubernetes リソースを GitHub 上で一元管理し、宣言的な構成管理を実現
+- Kubernetes リソースの宣言的な構成管理を実現
 - Kubernetes クラスターと Git リポジトリの同期状態を可視化
 
 
