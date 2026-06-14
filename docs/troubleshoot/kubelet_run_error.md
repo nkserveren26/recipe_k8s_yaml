@@ -56,3 +56,30 @@ norio@kubenode:~$ sudo journalctl -u kubelet -n 10 --no-pager
  6月 12 08:55:47 kubenode kubelet[261533]: E0612 08:55:47.623270  261533 run.go:74] "command failed" err="failed to run Kubelet: unable to load bootstrap kubeconfig: stat /etc/kubernetes/bootstrap-kubelet.conf: no such file or directory"
  6月 12 08:55:47 kubenode systemd[1]: kubelet.service: Main process exited, code=exited, status=1/FAILURE
  6月 12 08
+
+
+Kubernetes クラスター内部で使用される証明書の有効期限を確認
+　以下コマンドでは、以下のファイルを参照するため、root 権限でコマンドを実行する必要がある
+　　/etc/kubernetes/admin.conf
+ norio@kubenode:~$ sudo kubeadm certs check-expiration
+[check-expiration] Reading configuration from the cluster...
+[check-expiration] FYI: You can look at this config file with 'kubectl -n kube-system get cm kubeadm-config -o yaml'
+[check-expiration] Error reading configuration from the Cluster. Falling back to default configuration
+
+CERTIFICATE                EXPIRES                  RESIDUAL TIME   CERTIFICATE AUTHORITY   EXTERNALLY MANAGED
+admin.conf                 Apr 18, 2026 14:08 UTC   <invalid>       ca                      no
+apiserver                  Apr 18, 2026 14:08 UTC   <invalid>       ca                      no
+apiserver-etcd-client      Apr 18, 2026 14:08 UTC   <invalid>       etcd-ca                 no
+apiserver-kubelet-client   Apr 18, 2026 14:08 UTC   <invalid>       ca                      no
+controller-manager.conf    Apr 18, 2026 14:08 UTC   <invalid>       ca                      no
+etcd-healthcheck-client    Apr 18, 2026 14:08 UTC   <invalid>       etcd-ca                 no
+etcd-peer                  Apr 18, 2026 14:08 UTC   <invalid>       etcd-ca                 no
+etcd-server                Apr 18, 2026 14:08 UTC   <invalid>       etcd-ca                 no
+front-proxy-client         Apr 18, 2026 14:08 UTC   <invalid>       front-proxy-ca          no
+scheduler.conf             Apr 18, 2026 14:08 UTC   <invalid>       ca                      no
+super-admin.conf           Apr 18, 2026 14:08 UTC   <invalid>       ca                      no
+
+CERTIFICATE AUTHORITY   EXPIRES                  RESIDUAL TIME   EXTERNALLY MANAGED
+ca                      Apr 16, 2035 14:08 UTC   8y              no
+etcd-ca                 Apr 16, 2035 14:08 UTC   8y              no
+front-proxy-ca          Apr 16, 2035 14:08 UTC   8y              no
