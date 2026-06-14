@@ -1,0 +1,58 @@
+kubectlコマンドを実行すると以下のエラーが、、
+norio@kubenode:~$ kubectl get svc -n argocd
+E0612 08:53:31.434733  261378 memcache.go:265] couldn't get current server API group list: Get "https://192.168.3.17:6443/api?timeout=32s": dial tcp 192.168.3.17:6443: connect: connection refused
+E0612 08:53:31.435574  261378 memcache.go:265] couldn't get current server API group list: Get "https://192.168.3.17:6443/api?timeout=32s": dial tcp 192.168.3.17:6443: connect: connection refused
+
+
+
+kube-apiserver等、Kubernetesのコンポーネントが動いていない可能性
+
+
+
+これらのコンポーネントはpodで動いており、
+podを動かす役割を果たすkubeletもしくはコンテナランタイムで何か問題が起きている可能性
+
+
+containerdが動いているか確認
+norio@kubenode:~$ systemctl status containerd
+● containerd.service - containerd container runtime
+     Loaded: loaded (/lib/systemd/system/containerd.service; enabled; vendor pr>
+     Active: active (running) since Wed 2026-06-10 09:01:56 JST; 1 day 23h ago
+       Docs: https://containerd.io
+   Main PID: 670 (containerd)
+      Tasks: 96
+     Memory: 92.7M
+        CPU: 10min 47.264s
+     CGroup: /system.slice/containerd.service
+             mq670 /usr/bin/containerd
+
+
+kubeletが起動しているか確認
+norio@kubenode:~$ sudo systemctl status kubelet
+[sudo] password for norio:
+● kubelet.service - kubelet: The Kubernetes Node Agent
+     Loaded: loaded (/lib/systemd/system/kubelet.service; enabled; vendor prese>
+    Drop-In: /usr/lib/systemd/system/kubelet.service.d
+             mq10-kubeadm.conf
+     Active: activating (auto-restart) (Result: exit-code) since Fri 2026-06-12>
+       Docs: https://kubernetes.io/docs/
+    Process: 261427 ExecStart=/usr/bin/kubelet $KUBELET_KUBECONFIG_ARGS $KUBELE>
+   Main PID: 261427 (code=exited, status=1/FAILURE)
+        CPU: 53ms
+
+
+
+
+journalctl コマンドで、kubelet関連の journal ログを確認
+　kubeletで使用する証明書の有効期限が切れている
+norio@kubenode:~$ sudo journalctl -u kubelet -n 10 --no-pager
+ 6月 12 08:55:47 kubenode kubelet[261533]: Flag --container-runtime-endpoint has been deprecated, This parameter should be set via the config file specified by the Kubelet's --config flag. See https://kubernetes.io/docs/tasks/administer-cluster/kubelet-config-file/ for more information.
+ 6月 12 08:55:47 kubenode kubelet[261533]: Flag --pod-infra-container-image has been deprecated, will be removed in a future release. Image garbage collector will get sandbox image information from CRI.
+ 6月 12 08:55:47 kubenode kubelet[261533]: I0612 08:55:47.616672  261533 server.go:210] "--pod-infra-container-image will not be pruned by the image garbage collector in kubelet and should also be set in the remote runtime"
+ 6月 12 08:55:47 kubenode kubelet[261533]: I0612 08:55:47.621685  261533 server.go:489] "Kubelet version" kubeletVersion="v1.30.11"
+ 6月 12 08:55:47 kubenode kubelet[261533]: I0612 08:55:47.621711  261533 server.go:491] "Golang settings" GOGC="" GOMAXPROCS="" GOTRACEBACK=""
+ 6月 12 08:55:47 kubenode kubelet[261533]: I0612 08:55:47.622036  261533 server.go:932] "Client rotation is on, will bootstrap in background"
+ 6月 12 08:55:47 kubenode kubelet[261533]: E0612 08:55:47.623225  261533 bootstrap.go:266] part of the existing bootstrap client certificate in /etc/kubernetes/kubelet.conf is expired: 2026-04-18 14:08:56 +0000 UTC
+ 6月 12 08:55:47 kubenode kubelet[261533]: E0612 08:55:47.623270  261533 run.go:74] "command failed" err="failed to run Kubelet: unable to load bootstrap kubeconfig: stat /etc/kubernetes/bootstrap-kubelet.conf: no such file or directory"
+ 6月 12 08:55:47 kubenode systemd[1]: kubelet.service: Main process exited, code=exited, status=1/FAILURE
+ 6月 12 08
