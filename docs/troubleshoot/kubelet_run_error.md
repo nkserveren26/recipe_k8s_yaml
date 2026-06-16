@@ -67,8 +67,10 @@ norio@kubenode:~$ sudo journalctl -u kubelet -n 10 --no-pager
 
 Kubernetes クラスター内部で使用される証明書の有効期限を確認
 　以下コマンドでは、以下のファイルを参照するため、root 権限でコマンドを実行する必要がある
-　全ての証明書の有効期限が切れていることを確認
 　　/etc/kubernetes/admin.conf
+　全ての証明書の有効期限が切れていることを確認
+　ちなみに証明書は以下に配置されている
+　　/etc/kubernetes/pki/
  norio@kubenode:~$ sudo kubeadm certs check-expiration
 [check-expiration] Reading configuration from the cluster...
 [check-expiration] FYI: You can look at this config file with 'kubectl -n kube-system get cm kubeadm-config -o yaml'
