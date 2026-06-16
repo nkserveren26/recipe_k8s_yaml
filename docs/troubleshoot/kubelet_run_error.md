@@ -141,3 +141,34 @@ certificate embedded in the kubeconfig file for the super-admin renewed
 
 Done renewing certificates. You must restart the kube-apiserver, kube-controller-manager, kube-scheduler and etcd, so that they can use the new certificates.
 ```
+
+
+更新後、証明書の有効期限を確認
+```bash
+sudo kubeadm certs check-expiration
+```
+
+```bash
+norio@kubenode:~$ sudo kubeadm certs check-expiration
+[check-expiration] Reading configuration from the cluster...
+[check-expiration] FYI: You can look at this config file with 'kubectl -n kube-system get cm kubeadm-config -o yaml'
+[check-expiration] Error reading configuration from the Cluster. Falling back to default configuration
+
+CERTIFICATE                EXPIRES                  RESIDUAL TIME   CERTIFICATE AUTHORITY   EXTERNALLY MANAGED
+admin.conf                 Jun 16, 2027 14:05 UTC   364d            ca                      no
+apiserver                  Jun 16, 2027 14:05 UTC   364d            ca                      no
+apiserver-etcd-client      Jun 16, 2027 14:05 UTC   364d            etcd-ca                 no
+apiserver-kubelet-client   Jun 16, 2027 14:05 UTC   364d            ca                      no
+controller-manager.conf    Jun 16, 2027 14:05 UTC   364d            ca                      no
+etcd-healthcheck-client    Jun 16, 2027 14:05 UTC   364d            etcd-ca                 no
+etcd-peer                  Jun 16, 2027 14:05 UTC   364d            etcd-ca                 no
+etcd-server                Jun 16, 2027 14:05 UTC   364d            etcd-ca                 no
+front-proxy-client         Jun 16, 2027 14:05 UTC   364d            front-proxy-ca          no
+scheduler.conf             Jun 16, 2027 14:05 UTC   364d            ca                      no
+super-admin.conf           Jun 16, 2027 14:05 UTC   364d            ca                      no
+
+CERTIFICATE AUTHORITY   EXPIRES                  RESIDUAL TIME   EXTERNALLY MANAGED
+ca                      Apr 16, 2035 14:08 UTC   8y              no
+etcd-ca                 Apr 16, 2035 14:08 UTC   8y              no
+front-proxy-ca          Apr 16, 2035 14:08 UTC   8y              no
+```
