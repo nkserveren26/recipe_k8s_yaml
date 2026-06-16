@@ -14,11 +14,12 @@ kube-apiserver等、Kubernetesのコンポーネントが動いていないか�
 　API Server を経由せず、kubelet 自身が以下に配置されている、各Kubernetes コンポーネントの manifest を参照し、これらのコンポーネントを Static Pod としてデプロイしている。
 　　/etc/kubernetes/manifests
 
-もし、Kubernetes コンポーネントが動いていない
-podを動かす役割を果たすkubeletもしくはコンテナランタイムで何か問題が起きている可能性
+もし、Kubernetes コンポーネントが動いていない場合、
+podを動かす役割を果たすkubeletもしくはコンテナランタイムで何か問題が起きている可能性がある。
 
 
 containerdが動いているか確認
+　→起動していることを確認
 norio@kubenode:~$ systemctl status containerd
 ● containerd.service - containerd container runtime
      Loaded: loaded (/lib/systemd/system/containerd.service; enabled; vendor pr>
@@ -33,6 +34,7 @@ norio@kubenode:~$ systemctl status containerd
 
 
 kubeletが起動しているか確認
+　→何らかの理由でエラーが起き、起動のトライを繰り返している模様
 norio@kubenode:~$ sudo systemctl status kubelet
 [sudo] password for norio:
 ● kubelet.service - kubelet: The Kubernetes Node Agent
