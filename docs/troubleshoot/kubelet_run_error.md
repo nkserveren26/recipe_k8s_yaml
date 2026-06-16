@@ -100,7 +100,7 @@ front-proxy-ca          Apr 16, 2035 14:08 UTC   8y              no
 
 
 ### 証明書の更新
-##### 証明書ファイルのバックアップ
+#### 証明書ファイルのバックアップ
 
 バックアップ実施
 ```bash
@@ -111,4 +111,33 @@ sudo cp -r /etc/kubernetes /root/k8s-backup/
 ファイルをバックアップできたか確認
 ```bash
 sudo ls /root/k8s-backup/kubernetes
+```
+
+
+#### 証明書の更新
+証明書を更新
+```bash
+sudo kubeadm certs renew all
+```
+
+
+```bash
+norio@kubenode:~$ sudo kubeadm certs renew all
+[renew] Reading configuration from the cluster...
+[renew] FYI: You can look at this config file with 'kubectl -n kube-system get cm kubeadm-config -o yaml'
+[renew] Error reading configuration from the Cluster. Falling back to default configuration
+
+certificate embedded in the kubeconfig file for the admin to use and for kubeadm itself renewed
+certificate for serving the Kubernetes API renewed
+certificate the apiserver uses to access etcd renewed
+certificate for the API server to connect to kubelet renewed
+certificate embedded in the kubeconfig file for the controller manager to use renewed
+certificate for liveness probes to healthcheck etcd renewed
+certificate for etcd nodes to communicate with each other renewed
+certificate for serving etcd renewed
+certificate for the front proxy client renewed
+certificate embedded in the kubeconfig file for the scheduler manager to use renewed
+certificate embedded in the kubeconfig file for the super-admin renewed
+
+Done renewing certificates. You must restart the kube-apiserver, kube-controller-manager, kube-scheduler and etcd, so that they can use the new certificates.
 ```
