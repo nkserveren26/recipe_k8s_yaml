@@ -91,3 +91,7 @@ CERTIFICATE AUTHORITY   EXPIRES                  RESIDUAL TIME   EXTERNALLY MANA
 ca                      Apr 16, 2035 14:08 UTC   8y              no
 etcd-ca                 Apr 16, 2035 14:08 UTC   8y              no
 front-proxy-ca          Apr 16, 2035 14:08 UTC   8y              no
+
+
+以上より、Kubernetes API Server に接続できない原因は、API Server を含む各 Kubernetes コンポーネントの Static Pod が起動していないことが直接原因である。
+そして、Static Pod が起動しない原因は、Static Pod をデプロイする役割を果たす kubelet が起動していないことであり、kubeletが起動しない原因は、kubelet が Kubernetes API Server と接続時に使用するクライアント証明書の有効期限が切れているため。
