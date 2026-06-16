@@ -12,6 +12,7 @@ kube-apiserver等、Kubernetesのコンポーネントが動いていないか�
 これらのコンポーネントはpodで動いている。
 　正確に言うと、Static Pod として kubelet が直接起動している
 　API Server を経由せず、kubelet 自身が以下に配置されている、各Kubernetes コンポーネントの manifest を参照し、これらのコンポーネントを Static Pod としてデプロイしている。
+　　/etc/kubernetes/manifests
 
 もし、Kubernetes コンポーネントが動いていない
 podを動かす役割を果たすkubeletもしくはコンテナランタイムで何か問題が起きている可能性
