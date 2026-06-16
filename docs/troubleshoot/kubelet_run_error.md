@@ -51,7 +51,7 @@ norio@kubenode:~$ sudo systemctl status kubelet
 
 
 journalctl コマンドで、kubelet関連の journal ログを確認
-　kubeletで使用する証明書の有効期限が切れている
+　kubeletで使用する証明書の有効期限が切れているエラーログが記録されていることを確認
 norio@kubenode:~$ sudo journalctl -u kubelet -n 10 --no-pager
  6月 12 08:55:47 kubenode kubelet[261533]: Flag --container-runtime-endpoint has been deprecated, This parameter should be set via the config file specified by the Kubelet's --config flag. See https://kubernetes.io/docs/tasks/administer-cluster/kubelet-config-file/ for more information.
  6月 12 08:55:47 kubenode kubelet[261533]: Flag --pod-infra-container-image has been deprecated, will be removed in a future release. Image garbage collector will get sandbox image information from CRI.
@@ -67,6 +67,7 @@ norio@kubenode:~$ sudo journalctl -u kubelet -n 10 --no-pager
 
 Kubernetes クラスター内部で使用される証明書の有効期限を確認
 　以下コマンドでは、以下のファイルを参照するため、root 権限でコマンドを実行する必要がある
+　全ての証明書の有効期限が切れていることを確認
 　　/etc/kubernetes/admin.conf
  norio@kubenode:~$ sudo kubeadm certs check-expiration
 [check-expiration] Reading configuration from the cluster...
