@@ -100,9 +100,15 @@ front-proxy-ca          Apr 16, 2035 14:08 UTC   8y              no
 
 
 ### 証明書の更新
-証明書ファイルのバックアップ
+##### 証明書ファイルのバックアップ
 
+バックアップ実施
 ```bash
 sudo mkdir -p /root/k8s-backup
 sudo cp -r /etc/kubernetes /root/k8s-backup/
+```
+
+ファイルをバックアップできたか確認
+```bash
+sudo ls /root/k8s-backup/kubernetes
 ```
