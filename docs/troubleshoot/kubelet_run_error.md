@@ -5,11 +5,15 @@ E0612 08:53:31.435574  261378 memcache.go:265] couldn't get current server API g
 
 
 
-kube-apiserver等、Kubernetesのコンポーネントが動いていない可能性
+kube-apiserver等、Kubernetesのコンポーネントが動いていないか、コンポーネントは動いているが、
+何らかの理由でこれらに接続できない可能性
 
 
+これらのコンポーネントはpodで動いている。
+　正確に言うと、Static Pod として kubelet が直接起動している
+　API Server を経由せず、kubelet 自身が以下に配置されている、各Kubernetes コンポーネントの manifest を参照し、これらのコンポーネントを Static Pod としてデプロイしている。
 
-これらのコンポーネントはpodで動いており、
+もし、Kubernetes コンポーネントが動いていない
 podを動かす役割を果たすkubeletもしくはコンテナランタイムで何か問題が起きている可能性
 
 
