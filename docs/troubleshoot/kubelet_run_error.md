@@ -181,3 +181,10 @@ front-proxy-ca          Apr 16, 2035 14:08 UTC   8y              no
 sudo cp /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 ```
+
+### kubelet 再起動
+
+kubelet 再起動。
+```bash
+sudo systemctl restart kubelet
+```
