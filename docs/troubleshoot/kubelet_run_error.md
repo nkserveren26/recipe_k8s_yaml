@@ -175,6 +175,7 @@ front-proxy-ca          Apr 16, 2035 14:08 UTC   8y              no
 
 
 #### kubeconfig の更新
+証明書更新によって、/etc/kubernetes/admin.conf も更新されるため、kubectl の設定を更新。
 
 ```bash
 sudo cp /etc/kubernetes/admin.conf $HOME/.kube/config
