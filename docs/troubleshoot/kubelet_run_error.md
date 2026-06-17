@@ -188,3 +188,8 @@ kubelet 再起動。
 ```bash
 sudo systemctl restart kubelet
 ```
+
+kubelet の状態確認
+```bash
+sudo systemctl status kubelet
+```
