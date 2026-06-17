@@ -172,3 +172,11 @@ ca                      Apr 16, 2035 14:08 UTC   8y              no
 etcd-ca                 Apr 16, 2035 14:08 UTC   8y              no
 front-proxy-ca          Apr 16, 2035 14:08 UTC   8y              no
 ```
+
+
+#### kubeconfig の更新
+
+```bash
+sudo cp /etc/kubernetes/admin.conf $HOME/.kube/config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
+```
