@@ -224,3 +224,14 @@ norio@kubenode:~$ sudo journalctl -u kubelet -n 10 --no-pager
  6月 19 23:18:59 kubenode systemd[1]: kubelet.service: Main process exited, code=exited, status=1/FAILURE
  6月 19 23:18:59 kubenode systemd[1]: kubelet.service: Failed with result 'exit-code'.
 ```
+
+
+kubelet が使用する証明書を確認
+```bash
+norio@kubenode:~$ sudo ls -l /var/lib/kubelet/pki/
+total 12
+-rw------- 1 root root 2822  4月 18  2025 kubelet-client-2025-04-18-23-08-57.pem
+lrwxrwxrwx 1 root root   59  4月 18  2025 kubelet-client-current.pem -> /var/lib/kubelet/pki/kubelet-client-2025-04-18-23-08-57.pem
+-rw-r--r-- 1 root root 2270  4月 18  2025 kubelet.crt
+-rw------- 1 root root 1675  4月 18  2025 kubelet.key
+```
