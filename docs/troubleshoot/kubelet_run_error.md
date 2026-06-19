@@ -225,8 +225,15 @@ norio@kubenode:~$ sudo journalctl -u kubelet -n 10 --no-pager
  6月 19 23:18:59 kubenode systemd[1]: kubelet.service: Failed with result 'exit-code'.
 ```
 
-
 kubelet が使用する証明書を確認
+　/var/lib/kubelet/pki/kubelet-client-current.pem を使っていることが分かる。
+```bash
+norio@kubenode:~$ sudo grep client-certificate /etc/kubernetes/kubelet.conf
+    client-certificate: /var/lib/kubelet/pki/kubelet-client-current.pem
+```
+
+上記コマンドで確認した証明書を ls コマンドで確認
+kubelet-client-current.pem のシンボリックリンクが kubelet-client-2025-04-18-23-08-57.pem となっており、期限切れの証明書を見てそう。
 ```bash
 norio@kubenode:~$ sudo ls -l /var/lib/kubelet/pki/
 total 12
