@@ -194,7 +194,19 @@ kubelet の状態確認
 sudo systemctl status kubelet
 ```
 
-
+以前起動できず。
+```bash
+norio@kubenode:~$ sudo systemctl status kubelet
+● kubelet.service - kubelet: The Kubernetes Node Agent
+     Loaded: loaded (/lib/systemd/system/kubelet.service; enabled; vendor prese>
+    Drop-In: /usr/lib/systemd/system/kubelet.service.d
+             mq10-kubeadm.conf
+     Active: activating (auto-restart) (Result: exit-code) since Fri 2026-06-19>
+       Docs: https://kubernetes.io/docs/
+    Process: 980884 ExecStart=/usr/bin/kubelet $KUBELET_KUBECONFIG_ARGS $KUBELE>
+   Main PID: 980884 (code=exited, status=1/FAILURE)
+        CPU: 74ms
+```
 
 
 journalctl コマンドで、kubelet関連の journal ログを確認
