@@ -233,7 +233,7 @@ norio@kubenode:~$ sudo grep client-certificate /etc/kubernetes/kubelet.conf
 ```
 
 上記コマンドで確認した証明書を ls コマンドで確認
-kubelet-client-current.pem のシンボリックリンクが kubelet-client-2025-04-18-23-08-57.pem となっており、期限切れの証明書を見てそう。
+kubelet-client-current.pem のシンボリックリンクが kubelet-client-2025-04-18-23-08-57.pem となっており、この証明書を使用していることが分かる。
 ```bash
 norio@kubenode:~$ sudo ls -l /var/lib/kubelet/pki/
 total 12
@@ -241,4 +241,14 @@ total 12
 lrwxrwxrwx 1 root root   59  4月 18  2025 kubelet-client-current.pem -> /var/lib/kubelet/pki/kubelet-client-2025-04-18-23-08-57.pem
 -rw-r--r-- 1 root root 2270  4月 18  2025 kubelet.crt
 -rw------- 1 root root 1675  4月 18  2025 kubelet.key
+```
+
+上記証明書の有効期限を確認
+　notAfter が「Apr 18 14:08:56 2026 GMT」となっており、journalログに記録されていた「2026-04-18 14:08:56 +0000 UTC」と一致
+```bash
+norio@kubenode:~$ sudo openssl x509 \
+  -in /var/lib/kubelet/pki/kubelet-client-2025-04-18-23-08-57.pem \
+  -noout -dates
+notBefore=Apr 18 14:03:54 2025 GMT
+notAfter=Apr 18 14:08:56 2026 GMT
 ```
