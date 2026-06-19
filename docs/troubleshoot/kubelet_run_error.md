@@ -211,6 +211,7 @@ norio@kubenode:~$ sudo systemctl status kubelet
 
 journalctl コマンドで、kubelet関連の journal ログを確認
 　kubeletで使用する証明書の有効期限が切れているエラーログが記録されていることを確認
+```bash
 norio@kubenode:~$ sudo journalctl -u kubelet -n 10 --no-pager
  6月 19 23:18:59 kubenode kubelet[980793]: Flag --container-runtime-endpoint has been deprecated, This parameter should be set via the config file specified by the Kubelet's --config flag. See https://kubernetes.io/docs/tasks/administer-cluster/kubelet-config-file/ for more information.
  6月 19 23:18:59 kubenode kubelet[980793]: Flag --pod-infra-container-image has been deprecated, will be removed in a future release. Image garbage collector will get sandbox image information from CRI.
@@ -222,3 +223,4 @@ norio@kubenode:~$ sudo journalctl -u kubelet -n 10 --no-pager
  6月 19 23:18:59 kubenode kubelet[980793]: E0619 23:18:59.609039  980793 run.go:74] "command failed" err="failed to run Kubelet: unable to load bootstrap kubeconfig: stat /etc/kubernetes/bootstrap-kubelet.conf: no such file or directory"
  6月 19 23:18:59 kubenode systemd[1]: kubelet.service: Main process exited, code=exited, status=1/FAILURE
  6月 19 23:18:59 kubenode systemd[1]: kubelet.service: Failed with result 'exit-code'.
+```
