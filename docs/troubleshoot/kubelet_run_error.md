@@ -193,3 +193,20 @@ kubelet の状態確認
 ```bash
 sudo systemctl status kubelet
 ```
+
+
+
+
+journalctl コマンドで、kubelet関連の journal ログを確認
+　kubeletで使用する証明書の有効期限が切れているエラーログが記録されていることを確認
+norio@kubenode:~$ sudo journalctl -u kubelet -n 10 --no-pager
+ 6月 19 23:18:59 kubenode kubelet[980793]: Flag --container-runtime-endpoint has been deprecated, This parameter should be set via the config file specified by the Kubelet's --config flag. See https://kubernetes.io/docs/tasks/administer-cluster/kubelet-config-file/ for more information.
+ 6月 19 23:18:59 kubenode kubelet[980793]: Flag --pod-infra-container-image has been deprecated, will be removed in a future release. Image garbage collector will get sandbox image information from CRI.
+ 6月 19 23:18:59 kubenode kubelet[980793]: I0619 23:18:59.603978  980793 server.go:210] "--pod-infra-container-image will not be pruned by the image garbage collector in kubelet and should also be set in the remote runtime"
+ 6月 19 23:18:59 kubenode kubelet[980793]: I0619 23:18:59.607781  980793 server.go:489] "Kubelet version" kubeletVersion="v1.30.11"
+ 6月 19 23:18:59 kubenode kubelet[980793]: I0619 23:18:59.607804  980793 server.go:491] "Golang settings" GOGC="" GOMAXPROCS="" GOTRACEBACK=""
+ 6月 19 23:18:59 kubenode kubelet[980793]: I0619 23:18:59.608052  980793 server.go:932] "Client rotation is on, will bootstrap in background"
+ 6月 19 23:18:59 kubenode kubelet[980793]: E0619 23:18:59.609003  980793 bootstrap.go:266] part of the existing bootstrap client certificate in /etc/kubernetes/kubelet.conf is expired: 2026-04-18 14:08:56 +0000 UTC
+ 6月 19 23:18:59 kubenode kubelet[980793]: E0619 23:18:59.609039  980793 run.go:74] "command failed" err="failed to run Kubelet: unable to load bootstrap kubeconfig: stat /etc/kubernetes/bootstrap-kubelet.conf: no such file or directory"
+ 6月 19 23:18:59 kubenode systemd[1]: kubelet.service: Main process exited, code=exited, status=1/FAILURE
+ 6月 19 23:18:59 kubenode systemd[1]: kubelet.service: Failed with result 'exit-code'.
