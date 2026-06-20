@@ -349,3 +349,20 @@ Active になっていることを確認
      CGroup: /system.slice/kubelet.service
              mq1083009 /usr/bin/kubelet --bootstrap-kubeconfig=/etc/kubernetes/bootstrap-kubelet.conf --kubeconfig=/e>
 ```
+
+
+Kubernetes クラスターの Control Plane の各コンポーネントの Pod が起動しているか確認
+　STATUS が Running になっていれば OK
+```bash
+norio@kubenode:~$ kubectl get pods -n kube-system
+NAME                                       READY   STATUS    RESTARTS       AGE
+calico-kube-controllers-6df7596dbd-t6qrn   1/1     Running   30 (10d ago)   427d
+calico-node-slsxh                          1/1     Running   27 (10d ago)   427d
+coredns-55cb58b774-d4nmt                   1/1     Running   27 (10d ago)   427d
+coredns-55cb58b774-rnqvp                   1/1     Running   27 (10d ago)   427d
+etcd-kubenode                              1/1     Running   27 (10d ago)   427d
+kube-apiserver-kubenode                    1/1     Running   28 (10d ago)   427d
+kube-controller-manager-kubenode           1/1     Running   28 (10d ago)   427d
+kube-proxy-952lc                           1/1     Running   27 (10d ago)   427d
+kube-scheduler-kubenode                    1/1     Running   28 (10d ago)   427d
+```
