@@ -288,3 +288,19 @@ drwxr-xr-x 3 root root 4096  4月 18  2025 pki
 -rw------- 1 root root 5628  6月 16 23:05 scheduler.conf
 -rw------- 1 root root 5680  6月 16 23:05 super-admin.conf
 ```
+
+
+
+kubelet.conf のクライアント証明書情報を確認
+```bash
+norio@kubenode:~$ sudo grep client-certificate /etc/kubernetes/kubelet.conf
+    client-certificate-data: '<証明書データの Base64 文字列>'
+```
+
+
+上記コマンドで得た証明書データの Base64 エンコード文字列を使って、クライアント証明書の有効期限を確認
+```bash
+norio@kubenode:~$ echo '<証明書データの Base64 文字列>' | base64 -d | openssl x509 -noout -dates
+notBefore=Apr 18 14:03:54 2025 GMT
+notAfter=Jun 20 12:08:16 2027 GMT
+```
