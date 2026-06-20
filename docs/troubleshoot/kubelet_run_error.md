@@ -366,3 +366,17 @@ kube-controller-manager-kubenode           1/1     Running   28 (10d ago)   427d
 kube-proxy-952lc                           1/1     Running   27 (10d ago)   427d
 kube-scheduler-kubenode                    1/1     Running   28 (10d ago)   427d
 ```
+
+ArgoCD の Service 情報を取得できるか確認
+```bash
+norio@kubenode:~$ kubectl get svc -n argocd
+NAME                                      TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)                      AGE
+argocd-applicationset-controller          ClusterIP   10.99.176.170    <none>        7000/TCP,8080/TCP            303d
+argocd-dex-server                         ClusterIP   10.105.125.205   <none>        5556/TCP,5557/TCP,5558/TCP   303d
+argocd-metrics                            ClusterIP   10.97.88.251     <none>        8082/TCP                     303d
+argocd-notifications-controller-metrics   ClusterIP   10.103.167.98    <none>        9001/TCP                     303d
+argocd-redis                              ClusterIP   10.108.183.41    <none>        6379/TCP                     303d
+argocd-repo-server                        ClusterIP   10.111.64.232    <none>        8081/TCP,8084/TCP            303d
+argocd-server                             NodePort    10.103.188.69    <none>        80:30903/TCP,443:32389/TCP   303d
+argocd-server-metrics                     ClusterIP   10.104.137.44    <none>        8083/TCP                     303d
+```
