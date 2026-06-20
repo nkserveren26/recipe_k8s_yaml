@@ -305,3 +305,18 @@ norio@kubenode:~$ echo '<証明書データの Base64 文字列>' | base64 -d | 
 notBefore=Apr 18 14:03:54 2025 GMT
 notAfter=Jun 20 12:08:16 2027 GMT
 ```
+
+kubelet が内部で使用する証明書が配置されているディレクトリを確認
+　kubelet-client-current.pem が再作成され、シンボリックリンク先が「/var/lib/kubelet/pki/kubelet-client-2026-06-20-21-08-50.pem」になっている
+　/var/lib/kubelet/pki/kubelet-client-2026-06-20-21-08-50.pem も kubelet.conf 再作成時に一緒に作られたもの
+```bash
+norio@kubenode:~$ ls -l /var/lib/kubelet/pki/
+total 20
+-rw------- 1 root root 2822  4月 18  2025 kubelet-client-2025-04-18-23-08-57.pem
+-rw------- 1 root root 2822  6月 20 21:08 kubelet-client-2026-06-20-21-08-24.pem
+-rw------- 1 root root 1110  6月 20 21:08 kubelet-client-2026-06-20-21-08-50.pem
+lrwxrwxrwx 1 root root   59  6月 20 21:08 kubelet-client-current.pem -> /var/lib/kubelet/pki/kubelet-client-2026-06-20-21-08-50.pem
+lrwxrwxrwx 1 root root   59  4月 18  2025 kubelet-client-current.pem.bak -> /var/lib/kubelet/pki/kubelet-client-2025-04-18-23-08-57.pem
+-rw-r--r-- 1 root root 2270  4月 18  2025 kubelet.crt
+-rw------- 1 root root 1675  4月 18  2025 kubelet.key
+```bash
