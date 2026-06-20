@@ -261,9 +261,28 @@ kubelet が使用するクライアント証明書を退避
 sudo mv /var/lib/kubelet/pki/kubelet-client-current.pem /var/lib/kubelet/pki/kubelet-client-current.pem.bak
 ```
 
+kubelet.conf ファイルを退避
+```bash
+sudo mv /etc/kubernetes/kubelet.conf /etc/kubernetes/kubelet.conf.bak
+```
+
 kubelet.conf 更新
 ```bash
 norio@kubenode:~$ sudo kubeadm init phase kubeconfig kubelet
-I0620 21:05:33.072011 1066085 version.go:256] remote version is much newer: v1.36.2; falling back to: stable-1.30
-[kubeconfig] Using existing kubeconfig file: "/etc/kubernetes/kubelet.conf"
+I0620 21:08:16.474874 1066291 version.go:256] remote version is much newer: v1.36.2; falling back to: stable-1.30
+[kubeconfig] Writing "kubelet.conf" kubeconfig file
+```
+
+kubelet.conf が更新されたか確認
+```bash
+norio@kubenode:~$ ls -l /etc/kubernetes/
+total 52
+-rw------- 1 root root 5656  6月 16 23:05 admin.conf
+-rw------- 1 root root 5680  6月 16 23:05 controller-manager.conf
+-rw------- 1 root root 5660  6月 20 21:08 kubelet.conf
+-rw------- 1 root root 1976  4月 18  2025 kubelet.conf.bak
+drwxrwxr-x 2 root root 4096 11月  2  2025 manifests
+drwxr-xr-x 3 root root 4096  4月 18  2025 pki
+-rw------- 1 root root 5628  6月 16 23:05 scheduler.conf
+-rw------- 1 root root 5680  6月 16 23:05 super-admin.conf
 ```
