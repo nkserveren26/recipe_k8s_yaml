@@ -334,6 +334,8 @@ kubelet を起動できたか確認
 sudo systemctl status kubele
 ```
 
+Active になっていることを確認
+```bash
 ● kubelet.service - kubelet: The Kubernetes Node Agent
      Loaded: loaded (/lib/systemd/system/kubelet.service; enabled; vendor preset: enabled)
     Drop-In: /usr/lib/systemd/system/kubelet.service.d
@@ -346,3 +348,4 @@ sudo systemctl status kubele
         CPU: 1.159s
      CGroup: /system.slice/kubelet.service
              mq1083009 /usr/bin/kubelet --bootstrap-kubeconfig=/etc/kubernetes/bootstrap-kubelet.conf --kubeconfig=/e>
+```
