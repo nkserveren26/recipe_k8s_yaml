@@ -261,3 +261,9 @@ kubelet が使用するクライアント証明書を退避
 sudo mv /var/lib/kubelet/pki/kubelet-client-current.pem /var/lib/kubelet/pki/kubelet-client-current.pem.bak
 ```
 
+kubelet.conf 更新
+```bash
+norio@kubenode:~$ sudo kubeadm init phase kubeconfig kubelet
+I0620 21:05:33.072011 1066085 version.go:256] remote version is much newer: v1.36.2; falling back to: stable-1.30
+[kubeconfig] Using existing kubeconfig file: "/etc/kubernetes/kubelet.conf"
+```
