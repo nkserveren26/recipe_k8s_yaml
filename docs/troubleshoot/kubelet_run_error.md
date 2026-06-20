@@ -319,4 +319,30 @@ lrwxrwxrwx 1 root root   59  6月 20 21:08 kubelet-client-current.pem -> /var/li
 lrwxrwxrwx 1 root root   59  4月 18  2025 kubelet-client-current.pem.bak -> /var/lib/kubelet/pki/kubelet-client-2025-04-18-23-08-57.pem
 -rw-r--r-- 1 root root 2270  4月 18  2025 kubelet.crt
 -rw------- 1 root root 1675  4月 18  2025 kubelet.key
+```
+
+
+### kubelet 再起動できるか確認
+kubelet 再起動
 ```bash
+sudo systemctl restart kubelet
+```
+
+
+kubelet を起動できたか確認
+```bash
+sudo systemctl status kubele
+```
+
+● kubelet.service - kubelet: The Kubernetes Node Agent
+     Loaded: loaded (/lib/systemd/system/kubelet.service; enabled; vendor preset: enabled)
+    Drop-In: /usr/lib/systemd/system/kubelet.service.d
+             mq10-kubeadm.conf
+     Active: active (running) since Sat 2026-06-20 21:25:32 JST; 10s ago
+       Docs: https://kubernetes.io/docs/
+   Main PID: 1083009 (kubelet)
+      Tasks: 12 (limit: 18828)
+     Memory: 35.5M
+        CPU: 1.159s
+     CGroup: /system.slice/kubelet.service
+             mq1083009 /usr/bin/kubelet --bootstrap-kubeconfig=/etc/kubernetes/bootstrap-kubelet.conf --kubeconfig=/e>
