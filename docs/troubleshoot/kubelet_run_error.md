@@ -182,7 +182,7 @@ sudo cp /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 ```
 
-### kubelet 再起動
+### kubelet 再起動できるか確認
 
 kubelet 再起動。
 ```bash
@@ -253,3 +253,11 @@ norio@kubenode:~$ sudo openssl x509 \
 notBefore=Apr 18 14:03:54 2025 GMT
 notAfter=Apr 18 14:08:56 2026 GMT
 ```
+
+
+### kubelet.conf 更新
+kubelet が使用するクライアント証明書を退避
+```bash
+sudo mv /var/lib/kubelet/pki/kubelet-client-current.pem /var/lib/kubelet/pki/kubelet-client-current.pem.bak
+```
+
