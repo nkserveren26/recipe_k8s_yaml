@@ -299,6 +299,7 @@ norio@kubenode:~$ sudo grep client-certificate /etc/kubernetes/kubelet.conf
 
 
 上記コマンドで得た証明書データの Base64 エンコード文字列を使って、クライアント証明書の有効期限を確認
+　notAfter の期限を確認し、証明書の有効期限が更新されていることを確認
 ```bash
 norio@kubenode:~$ echo '<証明書データの Base64 文字列>' | base64 -d | openssl x509 -noout -dates
 notBefore=Apr 18 14:03:54 2025 GMT
