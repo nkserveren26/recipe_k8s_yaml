@@ -255,18 +255,20 @@ notAfter=Apr 18 14:08:56 2026 GMT
 ```
 
 
-### kubelet.conf 更新
+### kubelet.conf 再作成
 kubelet が使用するクライアント証明書を退避
 ```bash
 sudo mv /var/lib/kubelet/pki/kubelet-client-current.pem /var/lib/kubelet/pki/kubelet-client-current.pem.bak
 ```
 
 kubelet.conf ファイルを退避
+　kubelet.conf ファイルを別のファイル名に変更して退避しないと、後述の kubelet.conf の再作成ができない
+　（すでに kubelet.conf というファイルが存在していると kubelet.conf ファイルの再作成ができない）
 ```bash
 sudo mv /etc/kubernetes/kubelet.conf /etc/kubernetes/kubelet.conf.bak
 ```
 
-kubelet.conf 更新
+kubelet.conf 再作成
 ```bash
 norio@kubenode:~$ sudo kubeadm init phase kubeconfig kubelet
 I0620 21:08:16.474874 1066291 version.go:256] remote version is much newer: v1.36.2; falling back to: stable-1.30
