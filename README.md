@@ -1,3 +1,76 @@
+# 1. 概要 (Overview)
+プライベートで自分用に運用している Kubernetes Lab 環境です。
+
+ミニ PC 上に Kubernetes クラスタを構築し、フロントエンド・バックエンドアプリケーションを Kubernetes 上で動かしています。
+アプリのデプロイは Argo CD による GitOps ベースでデプロイしています。
+
+# 2. 目的 (Objectives)
+以下を目的に Kubernetes Lab 環境を運用しています。
+
+- Kubernetes 運用理解
+- GitOps の学習
+- Argo CD による継続デプロイ
+- IaC / 宣言的運用の実践
+- Platform Engineering スキル向上
+
+# 3. 構成図 (Architecture)
+
+
+
+# 4. 技術選定理由 (Why)
+
+## Argo CD
+### 課題
+当初は手動で Kubernetes 上へアプリケーションをデプロイしていた。
+
+アプリケーション更新時は以下の手順が必要であり、作業工数が大きく、オペレーションミスが発生するリスクがあった。
+- Deployment マニフェスト更新
+- 更新したマニフェストの配置
+- kubectl apply による手動反映
+
+また、Kubernetes クラスターへ適用されている状態と Git 上の状態の差分を把握しづらいという課題もあった。
+
+### 解決策
+GitOps を実現するために Argo CD を導入した。
+Argo CD で GitHub リポジトリを監視し、マニフェスト更新時に Kubernetes クラスターへ自動反映する構成とした。
+
+### 効果
+- 手動デプロイ作業を削減
+- kubectl apply の実行漏れやオペミスを防止
+- Git を Single Source of Truth とし、Kubernetes リソースの正しい状態を単一のリポジトリで管理
+- Kubernetes リソースの宣言的な構成管理を実現
+- Kubernetes クラスターと Git リポジトリの同期状態を可視化
+
+
+## Cloudflare
+### 課題
+Cloudflare 導入前は Kubernetes クラスター上で NodePort を利用し、IP アドレスを直接指定してアプリケーションへアクセスしていた。
+
+この方式では以下の課題があった。
+- HTTP 通信であり、通信が暗号化されていなかった
+- 家庭内ネットワークからのみアクセス可能だった
+- 将来的に外部からアクセスする場合、ルーターのポート開放や Kubernetes クラスターの直接公開が必要となる可能性があった
+
+### 解決策
+Cloudflare Tunnel を導入し、Cloudflare 経由でアプリケーションへアクセスする構成とした。
+
+### 効果
+- HTTPS による暗号化通信を実現
+- 家庭内ネットワーク外からもアプリケーションへアクセス可能
+- ルーターのポート開放を行わずに外部公開を実現
+- Kubernetes クラスターおよび家庭内ネットワークをインターネットへ直接公開しない構成を実現
+- Cloudflare を経由することで、よりセキュアなアクセス経路を構築
+
+
+## Kubernetes Lab 環境の構築手順
+
+
+# 6. 今後の改善予定
+- Helm を活用したアプリケーション管理
+- Prometheus / Grafana を利用した監視基盤構築
+- ミニ PC を 1 台増やし、完全なクラスター構成とする（現状は 1 台で運用）
+
+
 ## バックエンドアプリの構築メモ
 ・AWS認証情報を格納するSecretを作成
 ```bash
