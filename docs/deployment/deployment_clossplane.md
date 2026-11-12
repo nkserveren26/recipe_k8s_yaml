@@ -19,3 +19,18 @@ $ helm repo add \
 crossplane-stable https://charts.crossplane.io/stable
 ```
 
+Install the Crossplane components
+```bash
+$ helm install crossplane \
+crossplane-stable/crossplane \
+--namespace crossplane-system
+```
+
+
+Verify Crossplane installed with kubectl get pods.
+```bash
+$ kubectl get pods -n crossplane-system
+NAME                                       READY   STATUS    RESTARTS   AGE
+crossplane-795794dd85-hnk62                1/1     Running   0          5m26s
+crossplane-rbac-manager-8694755987-jr9ln   1/1     Running   0          5m26s
+```
