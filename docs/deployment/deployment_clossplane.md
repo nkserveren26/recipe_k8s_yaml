@@ -34,3 +34,10 @@ NAME                                       READY   STATUS    RESTARTS   AGE
 crossplane-795794dd85-hnk62                1/1     Running   0          5m26s
 crossplane-rbac-manager-8694755987-jr9ln   1/1     Running   0          5m26s
 ```
+
+Crossplaneのバージョン確認。
+```bash
+helm list -n crossplane-system
+NAME      	NAMESPACE        	REVISION	UPDATED                                	STATUS  	CHART           	APP VERSION
+crossplane	crossplane-system	1       	2026-11-13 07:20:51.870899356 +0900 JST	deployed	crossplane-2.4.3	2.4.3
+```
