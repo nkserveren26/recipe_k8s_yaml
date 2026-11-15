@@ -41,3 +41,9 @@ helm list -n crossplane-system
 NAME      	NAMESPACE        	REVISION	UPDATED                                	STATUS  	CHART           	APP VERSION
 crossplane	crossplane-system	1       	2026-11-13 07:20:51.870899356 +0900 JST	deployed	crossplane-2.4.3	2.4.3
 ```
+
+
+
+
+## 参考資料
+https://docs.crossplane.io/latest/packages/providers/
